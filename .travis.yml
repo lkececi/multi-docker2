@@ -1,3 +1,4 @@
+---
 language: generic
 sudo: required
 services:
@@ -13,9 +14,9 @@ after_success:
   - docker build -t lkececi/multi-nginx ./nginx
   - docker build -t lkececi/multi-server ./server
   - docker build -t lkececi/multi-worker ./worker
-  # Login to the docker CLI
-  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
   - docker push lkececi/multi-client
   - docker push lkececi/multi-nginx
   - docker push lkececi/multi-server
