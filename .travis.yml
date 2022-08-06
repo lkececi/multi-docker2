@@ -1,9 +1,8 @@
 sudo: required
 services:
   - docker
-
-  before_install:
-    - docker build -t lkececi/react-test -f ./client/Dockerfile.dev ./client
+before_install:
+  - docker build -t lkececi/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true lkececi/react-test npm test
@@ -20,4 +19,3 @@ after_success:
   - docker push lkececi/multi-nginx
   - docker push lkececi/multi-server
   - docker push lkececi/multi-worker
-  
