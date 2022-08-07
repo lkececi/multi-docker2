@@ -21,3 +21,15 @@ after_success:
   - docker push lkececi/multi-nginx
   - docker push lkececi/multi-server
   - docker push lkececi/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-eu-west-1-854597615242"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
